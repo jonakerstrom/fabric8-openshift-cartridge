@@ -1,0 +1,27 @@
+#!/bin/bash -eu
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+BUILD=CR3
+
+case "$1" in
+  -v|--version)
+    version="$2"
+esac
+echo "$version" > "$OPENSHIFT_FUSE_DIR/env/OPENSHIFT_FUSE_VERSION"
+
+#Download and extract the Fuse Fabric Distribution
+mkdir -p $OPENSHIFT_FUSE_DIR
+cd $OPENSHIFT_FUSE_DIR
+
+# try public fuse repository and fallback to ea repository
+#HTTP_CODE=`curl --write-out %{http_code} --silent --output fabric8-karaf-1.1.0.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/fs-public/io/fabric8/fabric8-karaf/1.0.0.${BUILD}/fabric8-karaf-1.0.0.${BUILD}.zip`
+HTTP_CODE=`curl --write-out %{http_code} --silent --output fabric8-karaf-1.1.0.${BUILD}.zip http://central.maven.org/maven2/io/fabric8/fabric8-karaf/1.1.0.${BUILD}/fabric8-karaf-1.1.0.${BUILD}.zip`
+if [ $HTTP_CODE != 200 ]; then
+	#curl --write-out %{http_code} --silent --output fabric8-karaf-1.0.0.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/ea/io/fabric8/fabric8-karaf/1.0.0.${BUILD}/fabric8-karaf-1.0.0.${BUILD}.zip
+	curl --write-out %{http_code} --silent --output fabric8-karaf-1.1.0.${BUILD}.zip http://central.maven.org/maven2/io/fabric8/fabric8-karaf/1.1.0.${BUILD}/fabric8-karaf-1.1.0.${BUILD}.zip 
+fi
+unzip fabric8-karaf-1.1.0.${BUILD}.zip
+ln -s fabric8-karaf-1.1.0.${BUILD} container
+
+
