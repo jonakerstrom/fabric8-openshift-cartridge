@@ -1,0 +1,97 @@
+
+# This level will only be used while the pax-logging service bundle
+# is not fully available.
+# To change log levels, please refer to the org.ops4j.pax.logging.cfg file
+# instead.
+org.ops4j.pax.logging.DefaultServiceLog.level=ERROR
+
+#
+# Name of this Karaf instance.
+#
+karaf.name=<%= ENV['OPENSHIFT_APP_NAME'] %>
+
+#
+# Default repository where bundles will be loaded from before using
+# other Maven repositories.  For the full Maven configuration, see
+# the org.ops4j.pax.url.mvn.cfg file.
+#
+karaf.default.repository=system
+
+#
+# Location of a shell script that will be run when starting a shell
+# session.  This script can be used to create aliases and define
+# additional commands.
+#
+karaf.shell.init.script=${karaf.etc}/shell.init.script
+
+karaf.admin.role=admin
+
+#
+# Set this empty property to avoid errors when validating xml documents.
+#
+xml.catalog.files=
+
+#
+# Suppress the bell in the console when hitting backspace too many times
+# for example
+#
+jline.nobell=true
+
+
+#
+# ServiceMix specs options
+#
+org.apache.servicemix.specs.debug=false
+
+#javax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
+javax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl
+
+#
+# Security properties
+#
+#java.security.policy=${karaf.etc}/all.policy
+#org.osgi.framework.security=osgi
+#org.osgi.framework.trust.repositories=${karaf.etc}/trustStore.ks
+
+#
+# Settings for the OSGi 4.3 Weaving
+# By default, we will not weave any classes. Change this setting to include classes
+# that you application needs to have woven.
+#
+org.apache.aries.proxy.weaving.enabled=none
+# Classes not to weave - Aries default + Xerces which is known to have issues.
+org.apache.aries.proxy.weaving.disabled=org.objectweb.asm.*,org.slf4j.*,org.apache.log4j.*,javax.*,org.apache.xerces.*
+# library path to find libvirt
+jna.library.path=/lib:/usr/lib:/usr/local/lib:/usr/share/lib:/opt/local/lib
+
+# Directory that managed processes are installed
+karaf.processes=${runtime.home}/processes
+
+# quartz should not call home by default
+org.quartz.scheduler.skipUpdateCheck=true
+
+#Runtime Properties Configuration
+runtime.id=${karaf.name}
+runtime.home=${karaf.home}
+runtime.conf=${karaf.home}/etc
+runtime.data=${karaf.data}
+zookeeper.sasl.client=false
+
+org.apache.xml.dtm.DTMManager=org.apache.xml.dtm.ref.DTMManagerDefault
+com.sun.org.apache.xml.internal.dtm.DTMManager=com.sun.org.apache.xml.internal.dtm.ref.DTMManagerDefault
+
+
+#
+# Fabric configuration
+#
+ensemble.auto.start=false
+agent.auto.start=true
+bind.address=<%= ENV['OPENSHIFT_FABRIC_IP'] %>
+publichostname=<%= ENV['OPENSHIFT_GEAR_DNS'] %>
+global.resolver=publichostname
+local.resolver=publichostname
+profiles=hawtio openshift
+org.osgi.service.http.connection.port=80
+org.osgi.service.http.port=<%= ENV['OPENSHIFT_FABRIC_HTTP_PORT'] %>
+org.ops4j.pax.web.listening.addresses=<%= ENV['OPENSHIFT_FABRIC_IP'] %>
+fabric.environment=openshift
