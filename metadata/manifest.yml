@@ -1,5 +1,5 @@
-Name: fuse
-Cartridge-Short-Name: FUSE
+Name: fabric8
+Cartridge-Short-Name: FABRIC8
 Display-Name: JBoss Fuse 6.1.0 EA
 Description: "Runs a JBoss Fuse container on OpenShift."
 Version: '1.1.0'
@@ -19,13 +19,13 @@ Website:
 Help-Topics:
   "Getting Started": https://www.openshift.com/videos/getting-started-with-jboss-fuse-on-openshift
 Cart-Data:
-  - Key: OPENSHIFT_FUSE_LOG_DIR
+  - Key: OPENSHIFT_FABRIC8_LOG_DIR
     Type: environment
     Description: "Directory to store application log files."
-  - Key: OPENSHIFT_FUSE_ZOOKEEPER_URL
+  - Key: OPENSHIFT_FABRIC8_ZOOKEEPER_URL
     Type: environment
     Description: "The url to zookeeper."
-  - Key: OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD
+  - Key: OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD
     Type: environment
     Description: "The zookeeper password."
   - Key: MAVEN_UPLOAD_URL
@@ -37,10 +37,10 @@ Cart-Data:
   - Key: OPENSHIFT_REPO_DIR
     Type: environemnt
     Description: "Application root directory where application files reside. This directory is reset every time you do a git-push"
-  - Key: OPENSHIFT_FUSE_PORT
+  - Key: OPENSHIFT_FABRIC8_PORT
     Type: environment
     Description: "Internal port to which the web-framework binds to."
-  - Key: OPENSHIFT_FUSE_IP
+  - Key: OPENSHIFT_FABRIC8_IP
     Type: environment
     Description: "Internal IP to which the web-framework binds to."
   - Key: OPENSHIFT_APP_DNS
