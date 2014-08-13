@@ -18,7 +18,6 @@ cd $OPENSHIFT_FABRIC8_DIR
 #HTTP_CODE=`curl --write-out %{http_code} --silent --output fabric8-karaf-1.1.0.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/fs-public/io/fabric8/fabric8-karaf/1.0.0.${BUILD}/fabric8-karaf-1.0.0.${BUILD}.zip`
 HTTP_CODE=`curl --write-out %{http_code} --silent --output fabric8-karaf-1.1.0.${BUILD}.zip http://central.maven.org/maven2/io/fabric8/fabric8-karaf/1.1.0.${BUILD}/fabric8-karaf-1.1.0.${BUILD}.zip`
 if [ $HTTP_CODE != 200 ]; then
-	#curl --write-out %{http_code} --silent --output fabric8-karaf-1.0.0.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/ea/io/fabric8/fabric8-karaf/1.0.0.${BUILD}/fabric8-karaf-1.0.0.${BUILD}.zip
 	curl --write-out %{http_code} --silent --output fabric8-karaf-1.1.0.${BUILD}.zip http://central.maven.org/maven2/io/fabric8/fabric8-karaf/1.1.0.${BUILD}/fabric8-karaf-1.1.0.${BUILD}.zip 
 fi
 unzip fabric8-karaf-1.1.0.${BUILD}.zip
