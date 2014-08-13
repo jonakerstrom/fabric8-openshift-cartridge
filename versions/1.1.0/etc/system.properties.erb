@@ -86,12 +86,12 @@ com.sun.org.apache.xml.internal.dtm.DTMManager=com.sun.org.apache.xml.internal.d
 #
 ensemble.auto.start=false
 agent.auto.start=true
-bind.address=<%= ENV['OPENSHIFT_FABRIC_IP'] %>
+bind.address=<%= ENV['OPENSHIFT_FABRIC8_IP'] %>
 publichostname=<%= ENV['OPENSHIFT_GEAR_DNS'] %>
 global.resolver=publichostname
 local.resolver=publichostname
 profiles=hawtio openshift
 org.osgi.service.http.connection.port=80
-org.osgi.service.http.port=<%= ENV['OPENSHIFT_FABRIC_HTTP_PORT'] %>
-org.ops4j.pax.web.listening.addresses=<%= ENV['OPENSHIFT_FABRIC_IP'] %>
+org.osgi.service.http.port=<%= ENV['OPENSHIFT_FABRIC8_HTTP_PORT'] %>
+org.ops4j.pax.web.listening.addresses=<%= ENV['OPENSHIFT_FABRIC8_IP'] %>
 fabric.environment=openshift
