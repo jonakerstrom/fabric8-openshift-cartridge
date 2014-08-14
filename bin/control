@@ -201,7 +201,7 @@ function deploy() {
 	if [ "$OPENSHIFT_FABRIC8_FABRIC" = "true" ]; then
 		fabric_shell "fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles"
 	else
-		cp -rf fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles/* $OPENSHIFT_FABRIC8_DIR/deploy
+		cp -rf fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles/* $OPENSHIFT_FABRIC8_DIR/container/deploy
 	fi
 }
 
