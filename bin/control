@@ -203,7 +203,7 @@ function deploy() {
 		fabric_shell "fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles"
 	else
 		client_result "Standalone deployment"
-		cp -rf fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles/* $OPENSHIFT_FABRIC8_DIR/container/deploy
+		cp -rf ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles/* $OPENSHIFT_FABRIC8_DIR/container/deploy
 	fi
 }
 
