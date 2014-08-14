@@ -200,10 +200,10 @@ function wait_for_start() {
 function deploy() {
 	if [ "$OPENSHIFT_FABRIC8_FABRIC" = "true" ]; then
 		client_result "Fabric deployment"
-		fabric_shell "fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles"
+		fabric_shell "fabric:import ${OPENSHIFT_REPO_DIR}"
 	else
 		client_result "Standalone deployment"
-		cp -rf ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles/* $OPENSHIFT_FABRIC8_DIR/container/deploy
+		cp -rf ${OPENSHIFT_REPO_DIR}* $OPENSHIFT_FABRIC8_DIR/container/deploy
 	fi
 }
 
