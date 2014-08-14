@@ -74,7 +74,7 @@ function setup() {
 	cart_props "username=admin"
 	cart_props "password=${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD}"
 		
-	${FABRIC8_BIN_DIR}/fabric8-start
+	${FABRIC8_BIN_DIR}/start
 	wait_for_start    
 	
 	
