@@ -198,7 +198,11 @@ function wait_for_start() {
 }
 
 function deploy() {
-  fabric_shell "fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles"
+   if [ "$OPENSHIFT_FABRIC8_FABRIC" = "true" ]; then
+		cp -rf fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles/* $OPENSHIFT_FABRIC8_DIR/deploy
+   else
+		fabric_shell "fabric:import ${OPENSHIFT_REPO_DIR}/.openshift/config/profiles"
+   fi
 }
 
 function fabric_shell() {
