@@ -1,6 +1,6 @@
-====== OpenShift Fabric8 Cartridge ======
+Running Fuse on OpenShift
+-------------------------
 
-Fabric8 installtion on OpenShift
-
-Documentaion
-http://confluence.chnoumis.org/display/INFRA/Fabric8+OpenShift+Cartridge
+### OpenShift Fabric8 Cartridge
+### Documentaion
+(http://confluence.chnoumis.org/display/INFRA/Fabric8+OpenShift+Cartridge)
