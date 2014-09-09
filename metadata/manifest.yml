@@ -1,12 +1,12 @@
 Name: fabric8
 Cartridge-Short-Name: FABRIC8
-Display-Name: Fabric8 1.1.0.CR3
+Display-Name: Fabric8 1.2.0.Beta3
 Description: "Runs a JBoss Fuse container on OpenShift."
-Version: '1.1.0'
+Version: '1.2.0'
 Source-Url: https://github.com/v-rajan/fabric8-openshift-cartridge/archive/master.zip
 License: "ASL 2.0"
 License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
-Cartridge-Version: 0.0.1
+Cartridge-Version: 0.0.2
 Cartridge-Vendor: fusesource
 Vendor: redhat
 Categories:
