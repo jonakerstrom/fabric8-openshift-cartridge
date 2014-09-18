@@ -94,5 +94,5 @@ org.ops4j.pax.url.mvn.repositories= \
     https://repo.fusesource.com/nexus/content/groups/ea@id=fusesource.ea.repo, \
     http://svn.apache.org/repos/asf/servicemix/m2-repo@id=servicemix.repo, \
     http://repository.springsource.com/maven/bundles/release@id=springsource.release.repo, \
-<% if ENV['OPENSHIFT_FABRIC8_MVN_URL'] != nil %> http://repository.springsource.com/maven/bundles/external@id=springsource.external.repo, <%= ENV['OPENSHIFT_FABRIC8_MVN_URL'] %><% else %>http://repository.springsource.com/maven/bundles/external@id=springsource.external.repo<% end %>
+<% if ENV['OPENSHIFT_FABRIC8_MVN_URL'] != nil %>http://repository.springsource.com/maven/bundles/external@id=springsource.external.repo, <%= ENV['OPENSHIFT_FABRIC8_MVN_URL'] %><% else %>http://repository.springsource.com/maven/bundles/external@id=springsource.external.repo<% end %>
     
