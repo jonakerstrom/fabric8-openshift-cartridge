@@ -9,7 +9,7 @@ for i in */* ; do
   if [[ $i == *.erb ]]; then
     erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
   else
-	if [[ $i != 'system/org' ]] || [[ $i != 'fabric/import' ]]; then
+	if [[ $i != 'system/org' ]] && [[ $i != 'fabric/import' ]]; then
     	cp $i $OPENSHIFT_FABRIC8_DIR/container/$i
     fi	
   fi
