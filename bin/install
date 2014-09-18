@@ -6,15 +6,17 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 cd $OPENSHIFT_FABRIC8_DIR/versions/$OPENSHIFT_FABRIC8_VERSION
 
 for i in */* ; do
+ client_result "$i"
   if [[ $i == *.erb ]]; then
     erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
-    client_result "$i"
   else
 	if [[ $i != 'system/org' ]]; then
     	cp -rf $i $OPENSHIFT_FABRIC8_DIR/container/$i
     fi	
   fi
 done
+
+
 
 if [[ ! -z "${OPENSHIFT_FABRIC8_ECLIPSELINK_MOXY:-}" ]]; then
 	cp -rf system $OPENSHIFT_FABRIC8_DIR/container
