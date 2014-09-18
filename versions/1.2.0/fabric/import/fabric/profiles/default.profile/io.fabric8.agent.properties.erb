@@ -39,7 +39,8 @@ org.ops4j.pax.url.mvn.repositories= \
     https://repo.fusesource.com/nexus/content/repositories/releases@id=jbossreleases, \
     https://repo.fusesource.com/nexus/content/groups/ea@id=jbossearlyaccess, \
     http://repository.springsource.com/maven/bundles/release@id=ebrreleases, \
- <% if ENV['OPENSHIFT_FABRIC8_MVN_URL'] != nil %>http://repository.springsource.com/maven/bundles/external@id=ebrexternal, <%= ENV['OPENSHIFT_FABRIC8_MVN_URL'] %><% else %>http://repository.springsource.com/maven/bundles/external@id=ebrexternal<% end %>
+    http://repository.springsource.com/maven/bundles/external@id=ebrexternal, http://nexus-chnoumis.rhcloud.com/nexus/content/repositories/chnoumis-release
+<% if ENV['OPENSHIFT_FABRIC8_MVN_URL'] != nil %>http://repository.springsource.com/maven/bundles/external@id=ebrexternal, <%= ENV['OPENSHIFT_FABRIC8_MVN_URL'] %><% else %>http://repository.springsource.com/maven/bundles/external@id=ebrexternal<% end %>
     
 org.ops4j.pax.url.mvn.defaultRepositories=file:${runtime.home}/${karaf.default.repository}@snapshots@id=karaf-default,\
     file:${runtime.home}/local-repo@snapshots@id=karaf-local
