@@ -98,7 +98,8 @@ function start() {
       setup
     else
     ${FABRIC8_BIN_DIR}/start
-      wait_for_start    
+      wait_for_start
+     fabric_shell "fabric:profile-import file:${OPENSHIFT_REPO_DIR}"    
     fi
     client_message "Started Fuse cart"
   fi
@@ -200,13 +201,10 @@ function wait_for_start() {
 function deploy() {
 	if [ "$OPENSHIFT_FABRIC8_FABRIC" = "true" ]; then
 		client_result "Fabric deployment"
-		client_message "fabric:profile-import file:${OPENSHIFT_REPO_DIR}"
-		fabric_shell "fabric:profile-import file:${OPENSHIFT_REPO_DIR}"
-		client_result "Fabric deployment completed"
+		#fabric_shell "fabric:profile-import file:${OPENSHIFT_REPO_DIR}"
 	else
 		client_result "Standalone deployment"
 		cp -rf ${OPENSHIFT_REPO_DIR}* $OPENSHIFT_FABRIC8_DIR/container/deploy
-		client_result "Standalone deployment completed"
 	fi
 }
 
