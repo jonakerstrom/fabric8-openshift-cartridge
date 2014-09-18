@@ -8,6 +8,7 @@ cd $OPENSHIFT_FABRIC8_DIR/versions/$OPENSHIFT_FABRIC8_VERSION
 for i in */* ; do
   if [[ $i == *.erb ]]; then
     erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
+    client_result "$i"
   else
 	if [[ $i != 'system/org' ]]; then
     	cp -rf $i $OPENSHIFT_FABRIC8_DIR/container/$i
