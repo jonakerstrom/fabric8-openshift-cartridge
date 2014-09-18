@@ -16,7 +16,6 @@ for i in */* ; do
 done
 
 erb fabric/import/fabric/profiles/default.profile/io.fabric8.agent.properties.erb > $OPENSHIFT_FABRIC8_DIR/container/io.fabric8.agent.properties
-cp fabric/import/fabric/profiles/default.profile/io.fabric8.agent.properties $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/default.profile/io.fabric8.agent.properties
 
 if [[ ! -z "${OPENSHIFT_FABRIC8_ECLIPSELINK_MOXY:-}" ]]; then
 	cp -rf system $OPENSHIFT_FABRIC8_DIR/container
