@@ -6,11 +6,10 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 cd $OPENSHIFT_FABRIC8_DIR/versions/$OPENSHIFT_FABRIC8_VERSION
 
 for i in */* ; do
- client_result "$i"
   if [[ $i == *.erb ]]; then
     erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
   else
-	if [[ $i != 'system/org' ] || [ $i != 'fabric/import' ]]; then
+	if [[ $i != 'system/org' ]] || [[ $i != 'fabric/import' ]]; then
     	cp $i $OPENSHIFT_FABRIC8_DIR/container/$i
     fi	
   fi
