@@ -10,7 +10,7 @@ for i in */* ; do
     erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
   else
 	if [[ $i != 'system/org' ]]; then
-    	cp $i $OPENSHIFT_FABRIC8_DIR/container/$i
+    	cp -r -f $i $OPENSHIFT_FABRIC8_DIR/container/$i
     fi	
   fi
 done
