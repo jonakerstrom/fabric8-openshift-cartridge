@@ -5,6 +5,9 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 # Copy the version specific files into diy directory
 cd $OPENSHIFT_FABRIC8_DIR/versions/$OPENSHIFT_FABRIC8_VERSION
 
+mkdir $OPENSHIFT_FABRIC8_DIR/.m2
+mkdir $OPENSHIFT_FABRIC8_DIR/.m2/repository
+
 for i in */* ; do
   if [[ $i == *.erb ]]; then
     erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
