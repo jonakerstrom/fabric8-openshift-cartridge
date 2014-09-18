@@ -202,9 +202,11 @@ function deploy() {
 		client_result "Fabric deployment"
 		client_message "fabric:profile-import file:${OPENSHIFT_REPO_DIR}"
 		fabric_shell "fabric:profile-import file:${OPENSHIFT_REPO_DIR}"
+		client_result "Fabric deployment completed"
 	else
 		client_result "Standalone deployment"
 		cp -rf ${OPENSHIFT_REPO_DIR}* $OPENSHIFT_FABRIC8_DIR/container/deploy
+		client_result "Standalone deployment completed"
 	fi
 }
 
@@ -212,6 +214,7 @@ function fabric_shell() {
  password=`cat ${FABRIC8_PASSWD_FILE}`
  client_message "Connnecting to Fuse shell using: ${password}"
  ${FABRIC8_BIN_DIR}/client -h ${OPENSHIFT_FABRIC8_IP} -u admin -p ${password} $*
+client_result "${FABRIC8_BIN_DIR}/client -h ${OPENSHIFT_FABRIC8_IP} -u admin -p ${password} $*"
 }
 
 case "$1" in
