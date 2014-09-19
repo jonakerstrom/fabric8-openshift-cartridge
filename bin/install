@@ -5,18 +5,20 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 # Copy the version specific files into diy directory
 cd $OPENSHIFT_FABRIC8_DIR/versions/$OPENSHIFT_FABRIC8_VERSION
 
+mkdir -p $OPENSHIFT_FABRIC8_DIR/container/m2/repository/
+
 for i in */* ; do
   if [[ $i == *.erb ]]; then
     erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
   else
-	if [[ $i != 'system/org' ]] && [[ $i != 'fabric/import' ]] && [[ $i != 'm2/repository' ]]; then
+	if [[ $i != 'system/org' ]] && [[ $i != 'fabric/import' ]]; then
     	cp $i $OPENSHIFT_FABRIC8_DIR/container/$i
     fi	
   fi
 done
 
-mkdir -p $OPENSHIFT_FABRIC8_DIR/container/m2/repository/
-erb m2/repository/settings.xml.erb > $OPENSHIFT_FABRIC8_DIR/container/m2/repository/settings.xml
+#mkdir -p $OPENSHIFT_FABRIC8_DIR/container/m2/repository/
+#erb m2/repository/settings.xml.erb > $OPENSHIFT_FABRIC8_DIR/container/m2/repository/settings.xml
 
 
 mkdir -p  $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/default.profile
