@@ -16,7 +16,7 @@ for i in */* ; do
 done
 
 mkdir -p $OPENSHIFT_FABRIC8_DIR/container/m2/repository/
-erb $OPENSHIFT_FABRIC8_DIR/container/m2/repository/settings.xml.erb > $OPENSHIFT_FABRIC8_DIR/container/m2/repository/settings.xml
+erb m2/repository/settings.xml.erb > $OPENSHIFT_FABRIC8_DIR/container/m2/repository/settings.xml
 
 
 mkdir -p  $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/default.profile
