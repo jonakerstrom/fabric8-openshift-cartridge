@@ -23,12 +23,12 @@ function setup() {
     elif [ ! -z "${OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_PASSWORD:-}" ]; then
 		client_result "Using provided password from domain"
 		export OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD=${OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_PASSWORD}
-                set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD "${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD}" env
+        set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD "${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD}" env
 	else
 		# generate password and setup env vars
 		client_result "Generating password"
 		export OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD=$(generate_password)
-                set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD "${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD}" env
+        set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD "${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD}" env
 	fi
 	# Store password
 	echo "admin=${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD},admin" > $FABRIC8_USRPROPS_FILE
@@ -43,14 +43,14 @@ function setup() {
 	elif  [ ! -z "${OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL:-}" ]; then
 		client_result "Using provided url from domain"
 		export OPENSHIFT_FABRIC8_ZOOKEEPER_URL=${OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL}
-                set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_URL "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}" env
+        set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_URL "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}" env
 		join=true
 	# Turn into a fabric root container
 	else
 		# Additional system properties
 		client_result "Configuring zookeeper server"
 		export OPENSHIFT_FABRIC8_ZOOKEEPER_URL=${OPENSHIFT_GEAR_DNS}:${OPENSHIFT_FABRIC8_ZOOKEEPER_PROXY_PORT}
-                set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_URL "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}" env
+        set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_URL "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}" env
 		replace_property_value ensemble.auto.start true $FABRIC8_SYSPROPS_FILE
 		echo "zookeeper.server.port=${OPENSHIFT_FABRIC8_ZOOKEEPER_PORT}" >> $FABRIC8_SYSPROPS_FILE
 		echo "zookeeper.server.connection.port=${OPENSHIFT_FABRIC8_ZOOKEEPER_PROXY_PORT}" >> $FABRIC8_SYSPROPS_FILE
@@ -98,7 +98,7 @@ function start() {
       setup
     else
     ${FABRIC8_BIN_DIR}/start
-      wait_for_start    
+      wait_for_start
     fi
     client_message "Started Fuse cart"
   fi
@@ -200,7 +200,7 @@ function wait_for_start() {
 function deploy() {
 	if [ "$OPENSHIFT_FABRIC8_FABRIC" = "true" ]; then
 		client_result "Fabric deployment"
-		fabric_shell "fabric:import ${OPENSHIFT_REPO_DIR}"
+		fabric_shell "fabric:profile-import file:${OPENSHIFT_REPO_DIR}"
 	else
 		client_result "Standalone deployment"
 		cp -rf ${OPENSHIFT_REPO_DIR}* $OPENSHIFT_FABRIC8_DIR/container/deploy
@@ -211,6 +211,7 @@ function fabric_shell() {
  password=`cat ${FABRIC8_PASSWD_FILE}`
  client_message "Connnecting to Fuse shell using: ${password}"
  ${FABRIC8_BIN_DIR}/client -h ${OPENSHIFT_FABRIC8_IP} -u admin -p ${password} $*
+ client_result "${FABRIC8_BIN_DIR}/client -h ${OPENSHIFT_FABRIC8_IP} -u admin -p ${password} $*"
 }
 
 case "$1" in
