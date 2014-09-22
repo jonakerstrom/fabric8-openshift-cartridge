@@ -17,13 +17,13 @@ for i in */* ; do
   fi
 done
 
-#mkdir -p $OPENSHIFT_FABRIC8_DIR/container/m2/repository/
-#erb m2/repository/settings.xml.erb > $OPENSHIFT_FABRIC8_DIR/container/m2/repository/settings.xml
-
 
 mkdir -p  $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/default.profile
 erb fabric/import/fabric/profiles/default.profile/io.fabric8.agent.properties.erb > $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/default.profile/io.fabric8.agent.properties
 erb fabric/import/fabric/profiles/default.profile/org.ops4j.pax.url.mvn.properties.erb > $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/default.profile/org.ops4j.pax.url.mvn.properties
+
+mkdir -p  $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/openshift.profile
+erb fabric/import/fabric/profiles/openshift.profile/io.fabric8.openshift.properties.erb > $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/openshift.profile/io.fabric8.openshift.properties
 
 if [[ ! -z "${OPENSHIFT_FABRIC8_ECLIPSELINK_MOXY:-}" ]]; then
 	cp -rf system $OPENSHIFT_FABRIC8_DIR/container
