@@ -144,9 +144,9 @@ com.sun.org.apache.xml.internal.dtm.DTMManager=com.sun.org.apache.xml.internal.d
 #
 <% if ENV['OPENSHIFT_FABRIC8_FABRIC'] == 'true' %>
 agent.auto.start=true
-ensemble.auto.start=true
+ensemble.auto.start=false
 <% else %>
-agent.auto.start=false
+agent.auto.start=true
 ensemble.auto.start=false
 <% end %>
 bind.address=<%= ENV['OPENSHIFT_FABRIC8_IP'] %>
