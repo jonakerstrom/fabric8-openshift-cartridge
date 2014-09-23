@@ -2,7 +2,7 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-BUILD=Beta3
+BUILD=Beta4
 
 case "$1" in
   -v|--version)
