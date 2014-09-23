@@ -40,6 +40,26 @@ for i in fabric/import/fabric/profiles/openshift.profile/* ; do
 done
 #erb fabric/import/fabric/profiles/openshift.profile/io.fabric8.openshift.properties.erb > $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/openshift.profile/io.fabric8.openshift.properties
 
+#Copy insight 
+mkdir -p  $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/insight
+for i in fabric/import/fabric/profiles/insight/*/* ; do
+  if [[ $i == *.erb ]]; then
+    erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
+  else
+   	cp $i $OPENSHIFT_FABRIC8_DIR/container/$i
+  fi
+done
+
+#Copy mq 
+mkdir -p  $OPENSHIFT_FABRIC8_DIR/container/fabric/import/fabric/profiles/mq
+for i in fabric/import/fabric/profiles/mq/*/* ; do
+  if [[ $i == *.erb ]]; then
+    erb $i > $OPENSHIFT_FABRIC8_DIR/container/${i%.*}
+  else
+   	cp $i $OPENSHIFT_FABRIC8_DIR/container/$i
+  fi
+done
+
 if [[ ! -z "${OPENSHIFT_FABRIC8_ECLIPSELINK_MOXY:-}" ]]; then
 	cp -rf system $OPENSHIFT_FABRIC8_DIR/container
 fi
