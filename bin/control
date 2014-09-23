@@ -80,7 +80,7 @@ function setup() {
 	
 	
 	if $join; then
-        ${FABRIC8_BIN_DIR}/client -r 3 -d 10 -h ${OPENSHIFT_FABRIC8_IP} -a ${OPENSHIFT_FABRIC8_SSH_PORT} -u admin -p ${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD} "wait-for-service io.fabric8.boot.commands.service.Join"
+        ${FABRIC8_BIN_DIR}/client -r 3 -h ${OPENSHIFT_FABRIC8_IP} -a ${OPENSHIFT_FABRIC8_SSH_PORT} -u admin -p ${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD} "wait-for-service io.fabric8.boot.commands.service.Join"
         ${FABRIC8_BIN_DIR}/client -h ${OPENSHIFT_FABRIC8_IP} -a ${OPENSHIFT_FABRIC8_SSH_PORT} -u admin -p ${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD} "fabric:join -f -b ${OPENSHIFT_FABRIC8_IP} --zookeeper-password ${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD} ${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}"
 		client_result "WARNING: Creating fabric containers directly from"
 		client_result "         openshift is supported in a limited way"
