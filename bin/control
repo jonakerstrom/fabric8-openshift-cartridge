@@ -37,7 +37,16 @@ function setup() {
 
 	# Configure to join an existing fabric
 	join=false
-	if [ ! -z "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL:-}" ]; then
+	if [ ! -z "${OPENSHIFT_FUSE_ZOOKEEPER_URL:-}" ]; then
+		client_result "Using provided url from cartridge"
+		echo "zookeeper.url=$OPENSHIFT_FABRIC8_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
+	elif  [ ! -z "${OPENSHIFT_FUSE_DOMAIN_ZOOKEEPER_URL:-}" ]; then
+		client_result "Using provided url from domain"
+		echo "zookeeper.url=$OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
+		export OPENSHIFT_FABRIC8_ZOOKEEPER_URL=${OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL}
+        set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_URL "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}" env
+		join=true		
+	elif [ ! -z "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL:-}" ]; then
 		client_result "Using provided url from cartridge"
 		echo "zookeeper.url=$OPENSHIFT_FABRIC8_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
 	elif  [ ! -z "${OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL:-}" ]; then
