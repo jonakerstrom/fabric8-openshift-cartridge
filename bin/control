@@ -17,6 +17,11 @@ function replace_property_value {
 function setup() {
 	client_result "Setting up fabric container"
 
+echo "OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD=$OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD" >> $FABRIC8_SYSPROPS_FILE
+echo "OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_PASSWORD=$OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_PASSWORD" >> $FABRIC8_SYSPROPS_FILE
+echo "OPENSHIFT_FABRIC8_ZOOKEEPER_URL=$OPENSHIFT_FABRIC8_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
+echo "OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL=$OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
+
 	# Retrieve password
 	if [ ! -z "${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD:-}" ]; then
 		client_result "Using provided password from cartridge"
@@ -36,22 +41,12 @@ function setup() {
 	echo "zookeeper.password=${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD}" >> $FABRIC8_SYSPROPS_FILE
 
 	# Configure to join an existing fabric
-	join=false
-	if [ ! -z "${OPENSHIFT_FUSE_ZOOKEEPER_URL:-}" ]; then
-		client_result "Using provided url from cartridge"
-		echo "zookeeper.url=$OPENSHIFT_FUSE_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
-	elif  [ ! -z "${OPENSHIFT_FUSE_DOMAIN_ZOOKEEPER_URL:-}" ]; then
-		client_result "Using provided url from domain"
-		echo "zookeeper.url=$OPENSHIFT_FUSE_DOMAIN_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
-		export OPENSHIFT_FUSE_ZOOKEEPER_URL=${OPENSHIFT_FUSE_DOMAIN_ZOOKEEPER_URL}
-        set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_URL "${OPENSHIFT_FUSE_ZOOKEEPER_URL}" env
-		join=true		
-	elif [ ! -z "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL:-}" ]; then
+	join=false	
+	if [ ! -z "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL:-}" ]; then
 		client_result "Using provided url from cartridge"
 		echo "zookeeper.url=$OPENSHIFT_FABRIC8_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
 	elif  [ ! -z "${OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL:-}" ]; then
 		client_result "Using provided url from domain"
-		echo "zookeeper.url=$OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL" >> $FABRIC8_SYSPROPS_FILE
 		export OPENSHIFT_FABRIC8_ZOOKEEPER_URL=${OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL}
         set_env_var OPENSHIFT_FABRIC8_ZOOKEEPER_URL "${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}" env
 		join=true
