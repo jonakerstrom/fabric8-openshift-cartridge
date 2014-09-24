@@ -1,4 +1,21 @@
 <?xml version="1.0"?>
+<!--
+
+     Copyright 2005-2014 Red Hat, Inc.
+
+     Red Hat licenses this file to you under the Apache License, version
+     2.0 (the "License"); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.
+
+-->
 <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//
 DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
 
@@ -7,16 +24,21 @@ DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
     <!-- =========================================================== -->
     <!-- Set connectors                                              -->
     <!-- =========================================================== -->
+    <!-- One of each type!                                           -->
+    <!-- =========================================================== -->
 
+    <!-- Use this connector for many frequently idle connections
+         and for threadless continuations.
+    -->
     <Call name="addConnector">
         <Arg>
             <New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                <Set name="host">
+				<Set name="host">
                     <SystemProperty name="org.ops4j.pax.web.listening.addresses"/>
                 </Set>
                 <Set name="port">
                     <SystemProperty name="org.osgi.service.http.port"/>
-                </Set>
+                </Set>                
                 <Set name="maxIdleTime">300000</Set>
                 <Set name="Acceptors">2</Set>
                 <Set name="statsOn">false</Set>
@@ -26,10 +48,6 @@ DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
             </New>
         </Arg>
     </Call>
-
-    <!-- =========================================================== -->
-    <!-- Security setting                                           -->
-    <!-- =========================================================== -->
 
     <Call name="addBean">
         <Arg>
