@@ -58,7 +58,7 @@ function setup() {
 	fi
 
 	client_result ""
-	client_result "Fuse created successfully.  Please make note of these credentials:"
+	client_result "Fabric8 created successfully.  Please make note of these credentials:"
 	client_result ""
 	client_result "   Console URL:        http://${OPENSHIFT_GEAR_DNS}"
 	client_result "   Console User:       admin"
@@ -66,7 +66,7 @@ function setup() {
 	client_result "   Zookeeper URL:      ${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}"
 	client_result "   Zookeeper Password: ${OPENSHIFT_FABRIC8_ZOOKEEPER_PASSWORD}"
 	client_result ""
-	client_result "   The Fuse Management Console will be available shortly at: http://${OPENSHIFT_GEAR_DNS}"
+	client_result "   The Fabric8 Management Console will be available shortly at: http://${OPENSHIFT_GEAR_DNS}"
 	client_result ""
 	
 	add_domain_env_var "OPENSHIFT_FABRIC8_DOMAIN_ZOOKEEPER_URL=${OPENSHIFT_FABRIC8_ZOOKEEPER_URL}"
@@ -93,7 +93,7 @@ function setup() {
 
 function start() {
   if is_running; then
-    client_message "Fuse cart already started"
+    client_message "Fabric8 cart already started"
   else  
     if [ ! -f $FABRIC_CHECKER ]; then
       setup
@@ -101,7 +101,7 @@ function start() {
     ${FABRIC8_BIN_DIR}/start
       wait_for_start
     fi
-    client_message "Started Fuse cart"
+    client_message "Started Fabric8 cart"
   fi
 }
 
@@ -119,9 +119,9 @@ function stop() {
                     sleep 3
                 fi
             done
-        client_result "Stopped Fuse cart"
+        client_result "Stopped Fabric8 cart"
     else
-         echo "Fuse cart was stopped already"
+         echo "Fabric8 cart was stopped already"
     fi
 }
 
@@ -141,7 +141,7 @@ function status() {
 }
 
 function reload() {
-    client_message "Reloading Fuse cart"
+    client_message "Reloading Fabric8 cart"
     restart
 }
 
@@ -191,10 +191,10 @@ function wait_for_start() {
      if ps -p $PID > /dev/null; then
        client_result "Fabric($PID) is started successfully"
      else
-       client_error "Command Failed: Fuse process ($PID) is not running"
+       client_error "Command Failed: Fabric8 process ($PID) is not running"
      fi
    else
-    client_error "Command Failed:Could not find Fuse instance.properties"
+    client_error "Command Failed:Could not find Fabric8 instance.properties"
    fi
 }
 
@@ -210,7 +210,7 @@ function deploy() {
 
 function fabric_shell() {
  password=`cat ${FABRIC8_PASSWD_FILE}`
- client_message "Connnecting to Fuse shell using: ${password}"
+ client_message "Connnecting to Fabric8 shell using: ${password}"
  ${FABRIC8_BIN_DIR}/client -h ${OPENSHIFT_FABRIC8_IP} -u admin -p ${password} $*
  client_result "${FABRIC8_BIN_DIR}/client -h ${OPENSHIFT_FABRIC8_IP} -u admin -p ${password} $*"
 }
