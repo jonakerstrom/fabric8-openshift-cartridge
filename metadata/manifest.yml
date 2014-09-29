@@ -3,7 +3,7 @@ Cartridge-Short-Name: FABRIC8
 Display-Name: Fabric8 1.2.0.Beta3
 Description: "Runs a Fabric8 container on OpenShift."
 Version: '1.2.0'
-Source-Url: https://github.com/chnoumis/fabric8-openshift-cartridge/archive/master.zip
+Source-Url: https://github.com/jonakerstrom/fabric8-openshift-cartridge/archive/master.zip
 License: "ASL 2.0"
 License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
 Cartridge-Version: 0.0.2
